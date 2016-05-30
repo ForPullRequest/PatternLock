@@ -12,7 +12,7 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.PreferenceContract;
 import me.zhanghai.android.patternlock.sample.util.PreferenceUtils;
-
+//图案解锁 主题 关于
 public class MainFragment extends PreferenceFragmentCompat
         implements SharedPreferences.OnSharedPreferenceChangeListener {
 

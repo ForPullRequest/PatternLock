@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.zhanghai.android.patternlock.PatternView;
 import me.zhanghai.android.patternlock.sample.R;
@@ -30,11 +30,11 @@ public class AboutActivity extends ThemedAppCompatActivity {
         LOGO_PATTERN.add(PatternView.Cell.of(1, 1));
     }
 
-    @BindView(R.id.pattern_view)
+    @Bind(R.id.pattern_view)
     PatternView mPatternView;
-    @BindView(R.id.version_text)
+    @Bind(R.id.version_text)
     TextView mVersionText;
-    @BindView(R.id.github_text)
+    @Bind(R.id.github_text)
     TextView mGitHubText;
 
     @Override
@@ -45,7 +45,7 @@ public class AboutActivity extends ThemedAppCompatActivity {
 
         setContentView(R.layout.about_activity);
         ButterKnife.bind(this);
-
+        //一种新的应用方式
         mPatternView.setPattern(PatternView.DisplayMode.Animate, LOGO_PATTERN);
         String version = getString(R.string.about_version,
                 AppUtils.getPackageInfo(this).versionName);

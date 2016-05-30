@@ -12,6 +12,9 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.util.AttributeSet;
 
+/**
+ * 有了android:dependency就可以控制enable
+ */
 public class ClearPatternPreference extends DialogPreference {
 
     // As in PreferenceFragmentCompat, because we want to ensure that at most one dialog is showing.

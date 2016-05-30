@@ -708,6 +708,10 @@ public class PatternView extends View {
     }
 
     // helper method to find which cell a point maps to
+
+    /**
+     * 判重
+     */
     private Cell checkForNewHit(float x, float y) {
 
         final int rowHit = getRowHit(y);

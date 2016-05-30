@@ -5,6 +5,7 @@
 
 package me.zhanghai.android.patternlock.sample.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,6 +14,9 @@ import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.util.AppUtils;
 import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
 
+/**
+ * 图案解锁
+ */
 public class PatternLockActivity extends ThemedAppCompatActivity {
 
     private static final String KEY_CONFIRM_STARTED = "confirm_started";
@@ -56,10 +60,21 @@ public class PatternLockActivity extends ThemedAppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (PatternLockUtils.checkConfirmPatternResult(this, requestCode, resultCode)) {
+        if (checkConfirmPatternResult(this, requestCode, resultCode)) {
             mConfirmStarted = false;
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    public boolean checkConfirmPatternResult(Activity activity, int requestCode,
+                                                    int resultCode) {
+        if (requestCode == PatternLockUtils.REQUEST_CODE_CONFIRM_PATTERN
+                && resultCode != Activity.RESULT_OK) {
+            activity.finish();
+            return true;
+        } else {
+            return false;
         }
     }
 }

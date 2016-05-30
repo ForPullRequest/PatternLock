@@ -15,6 +15,9 @@ import me.zhanghai.android.patternlock.sample.util.AppUtils;
 import me.zhanghai.android.patternlock.sample.util.PatternLockUtils;
 import me.zhanghai.android.patternlock.sample.util.ThemeUtils;
 
+/**
+ * 设置密码界面
+ */
 public class SetPatternActivity extends me.zhanghai.android.patternlock.SetPatternActivity {
 
     @Override
@@ -30,7 +33,7 @@ public class SetPatternActivity extends me.zhanghai.android.patternlock.SetPatte
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case android.R.id.home://TODO ?
                 AppUtils.navigateUp(this);
                 return true;
             default:
@@ -38,6 +41,7 @@ public class SetPatternActivity extends me.zhanghai.android.patternlock.SetPatte
         }
     }
 
+    //两次绘制相同后返回
     @Override
     protected void onSetPattern(List<PatternView.Cell> pattern) {
         PatternLockUtils.setPattern(pattern, this);

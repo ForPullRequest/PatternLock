@@ -12,6 +12,9 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 import me.zhanghai.android.patternlock.sample.R;
 import me.zhanghai.android.patternlock.sample.preference.ClearPatternPreference;
 
+/**
+ * 设置解锁图案 使图案可见 清除解锁图案
+ */
 public class PatternLockFragment extends PreferenceFragmentCompat {
 
     @Override

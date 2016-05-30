@@ -41,6 +41,7 @@ public class BasePatternActivity extends AppCompatActivity {
     }
 
     protected void removeClearPatternRunnable() {
+        //Removes the specified Runnable from the message queue
         mPatternView.removeCallbacks(clearPatternRunnable);
     }
 

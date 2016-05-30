@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
+ * The most important part to draw parttern
  * Part of the source is from platform_packages_apps/Settings
  * android.settings.ChooseLockPattern.java
  */
@@ -28,7 +29,7 @@ public class SetPatternActivity extends BasePatternActivity
         public final int textId;
         public final boolean enabled;
 
-        private LeftButtonState(int textId, boolean enabled) {
+        LeftButtonState(int textId, boolean enabled) {
             this.textId = textId;
             this.enabled = enabled;
         }
@@ -44,7 +45,7 @@ public class SetPatternActivity extends BasePatternActivity
         public final int textId;
         public final boolean enabled;
 
-        private RightButtonState(int textId, boolean enabled) {
+        RightButtonState(int textId, boolean enabled) {
             this.textId = textId;
             this.enabled = enabled;
         }
@@ -60,7 +61,7 @@ public class SetPatternActivity extends BasePatternActivity
                 false),
         Confirm(R.string.pl_confirm_pattern, LeftButtonState.Cancel,
                 RightButtonState.ConfirmDisabled, true),
-        ConfirmWrong(R.string.pl_wrong_pattern, LeftButtonState.Cancel,
+        ConfirmWrong(R.string.pl_wrong_pattern, LeftButtonState.Cancel,//两次不同
                 RightButtonState.ConfirmDisabled, true),
         ConfirmCorrect(R.string.pl_pattern_confirmed, LeftButtonState.Cancel,
                 RightButtonState.Confirm, false);
@@ -70,7 +71,7 @@ public class SetPatternActivity extends BasePatternActivity
         public final RightButtonState rightButtonState;
         public final boolean patternEnabled;
 
-        private Stage(int messageId, LeftButtonState leftButtonState,
+        Stage(int messageId, LeftButtonState leftButtonState,
                       RightButtonState rightButtonState, boolean patternEnabled) {
             this.messageId = messageId;
             this.leftButtonState = leftButtonState;
@@ -123,7 +124,8 @@ public class SetPatternActivity extends BasePatternActivity
 
         outState.putInt(KEY_STAGE, stage.ordinal());
         if (pattern != null) {
-            outState.putString(KEY_PATTERN, PatternUtils.patternToString(pattern));
+            //patternToString->patternToSha1String
+            outState.putString(KEY_PATTERN, PatternUtils.patternToSha1String(pattern));
         }
     }
 
@@ -141,6 +143,9 @@ public class SetPatternActivity extends BasePatternActivity
     @Override
     public void onPatternCellAdded(List<PatternView.Cell> pattern) {}
 
+    /**
+     * 对图案的判断
+     */
     @Override
     public void onPatternDetected(List<PatternView.Cell> newPattern) {
         switch (stage) {
@@ -155,6 +160,9 @@ public class SetPatternActivity extends BasePatternActivity
                 break;
             case Confirm:
             case ConfirmWrong:
+                /**
+                 * 判断是否相同
+                 */
                 if (newPattern.equals(pattern)) {
                     updateStage(Stage.ConfirmCorrect);
                 } else {

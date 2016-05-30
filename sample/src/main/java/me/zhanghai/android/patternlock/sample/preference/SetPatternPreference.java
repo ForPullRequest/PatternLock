@@ -68,6 +68,9 @@ public class SetPatternPreference extends Preference
         PatternLockUtils.setPatternByUser(getContext());
     }
 
+    /**
+     * 图案是否可见
+     */
     @Override
     public boolean shouldDisableDependents() {
         return super.shouldDisableDependents() || !PatternLockUtils.hasPattern(getContext());

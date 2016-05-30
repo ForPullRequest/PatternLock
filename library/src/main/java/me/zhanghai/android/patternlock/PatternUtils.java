@@ -54,6 +54,9 @@ public class PatternUtils {
         return bytesToString(patternToBytes(pattern));
     }
 
+    /**
+     * 生成Pattern
+     */
     public static List<PatternView.Cell> stringToPattern(String string) {
         return bytesToPattern(stringToBytes(string));
     }

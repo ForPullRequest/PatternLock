@@ -16,7 +16,17 @@ import me.zhanghai.android.patternlock.sample.util.PreferenceContract;
 import me.zhanghai.android.patternlock.sample.util.PreferenceUtils;
 import me.zhanghai.android.patternlock.sample.util.ThemeUtils;
 
+/**
+ * 确认密码界面
+ * 需要重写方法isStealthModeEnabled isPatternCorrect onForgotPassword
+ */
 public class ConfirmPatternActivity extends me.zhanghai.android.patternlock.ConfirmPatternActivity {
+    Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            mMessageText.setText("");
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +36,9 @@ public class ConfirmPatternActivity extends me.zhanghai.android.patternlock.Conf
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * 图案是否可见
+     */
     @Override
     protected boolean isStealthModeEnabled() {
         return !PreferenceUtils.getBoolean(PreferenceContract.KEY_PATTERN_VISIBLE,
@@ -34,7 +47,11 @@ public class ConfirmPatternActivity extends me.zhanghai.android.patternlock.Conf
 
     @Override
     protected boolean isPatternCorrect(List<PatternView.Cell> pattern) {
-        return PatternLockUtils.isPatternCorrect(pattern, this);
+        mMessageText.removeCallbacks(r);
+        boolean flag = PatternLockUtils.isPatternCorrect(pattern, this);
+        if (!flag)
+            mMessageText.postDelayed(r, 2000);
+        return flag;
     }
 
     @Override
@@ -44,5 +61,16 @@ public class ConfirmPatternActivity extends me.zhanghai.android.patternlock.Conf
 
         // Finish with RESULT_FORGOT_PASSWORD.
         super.onForgotPassword();
+    }
+
+    /**
+     * 保证"图案错误请重试"被清除 而不清除"绘制图案以解锁"
+     */
+    @Override
+    public void onPatternStart() {
+        if (!mMessageText.getText().toString().equals(getResources()
+                .getString(me.zhanghai.android.patternlock.R.string.pl_draw_pattern_to_unlock)))
+            mMessageText.setText("");
+        super.onPatternStart();
     }
 }
