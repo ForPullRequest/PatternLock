@@ -19,7 +19,7 @@ import me.zhanghai.android.patternlock.sample.app.SetPatternActivity;
 
 public class PatternLockUtils {
 
-    public static final int REQUEST_CODE_CONFIRM_PATTERN = 1214;//?
+    public static final int REQUEST_CODE_CONFIRM_PATTERN = 1214;
 
     /**
      * 设置密码
@@ -59,7 +59,7 @@ public class PatternLockUtils {
     }
 
     /**
-     * 设置密码
+     * 设置密码 SetPatternPreference onClick
      */
     public static void setPatternByUser(Context context) {
         context.startActivity(new Intent(context, SetPatternActivity.class));

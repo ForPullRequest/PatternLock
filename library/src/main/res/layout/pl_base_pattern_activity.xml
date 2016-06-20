@@ -5,13 +5,12 @@
   ~ All Rights Reserved.
   -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:divider="?dividerHorizontal"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     android:showDividers="middle">
 
     <LinearLayout
@@ -47,16 +46,16 @@
 
         <Button
             android:id="@+id/pl_left_button"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="?android:attr/borderlessButtonStyle" />
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/pl_right_button"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="?android:attr/borderlessButtonStyle" />
+            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>
